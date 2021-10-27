@@ -1,14 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Header from './Header';
+import GlobalStyle from './styles/GlobalStyles';
 
-function Page({ children, cool }) {
+const InnerStyles = styled.div`
+  max-width: var(--maxWidth);
+  margin: 0 auto;
+  padding: 2rem;
+`;
+
+function Page({ children }) {
   return (
     <div>
+      <GlobalStyle />
       <Header />
-      <h2>I am from component</h2>
-      <h3>{cool}</h3>
-      {children}
+      <InnerStyles>{children}</InnerStyles>
     </div>
   );
 }
