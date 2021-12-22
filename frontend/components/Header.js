@@ -38,7 +38,7 @@ function Header() {
     <HeaderStyle>
       <div className="bar">
         <Logo>
-          <Link href={"./"}>Sick fits</Link>
+          <Link href={"/"}>Sick fits</Link>
         </Logo>
       </div>
       <div className="sub-bar">
