@@ -1,3 +1,4 @@
+import { Product } from "./schemas/Product";
 import { config, createSchema } from "@keystone-next/keystone/schema";
 import { createAuth } from "@keystone-next/auth";
 import {
@@ -41,6 +42,7 @@ export default withAuth(
     },
     lists: createSchema({
       User,
+      Product,
     }),
     ui: {
       //show the ui only for people who pass this test .
