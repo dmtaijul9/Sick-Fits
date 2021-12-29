@@ -1,0 +1,11 @@
+CLOUDINARY_CLOUD_NAME="dmtaijul9"
+CLOUDINARY_KEY=845221367289486
+CLOUDINARY_SECRET="d92OdzN48WQCm6a75ruLl9rkQpc"
+COOKIE_SECRET="ksjdlfkjsdlkfjslkdjflsndcvlksdnfonsodknfjoskndflnsdkf"
+DATABASE_URL=mongodb+srv://sick:Shahrin11@cluster0.gmrla.mongodb.net/sickFits?retryWrites=true&w=majority
+STRIPE_SECRET='sk_test-nahhhh'
+MAIL_HOST='smtp.ethereal.email'
+MAIL_PORT=587
+MAIL_USER="get-one-from- http://ethereal.email"
+MAIL_PASS="get-one-from- http://ethereal.email"
+FRONTEND_URL="http://localhost:7777"

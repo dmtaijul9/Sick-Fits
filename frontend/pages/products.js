@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import Products from "../components/Products";
 
 function products() {
-    return (
-        <div>
-            <p>I am from product page </p>
-        </div>
-    )
+  return (
+    <div>
+      <Products />
+    </div>
+  );
 }
 
-export default products
+export default products;

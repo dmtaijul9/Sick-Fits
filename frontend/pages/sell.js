@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import CreateProduct from "../components/CreateProduct";
 
 function sell() {
-    return (
-        <div>
-            <p>I am from sell page</p>
-        </div>
-    )
+  return (
+    <div>
+      <CreateProduct />
+    </div>
+  );
 }
 
-export default sell
+export default sell;
