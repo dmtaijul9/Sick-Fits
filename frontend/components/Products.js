@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 import styled from "styled-components";
 
-import SingleProduct from "./SingleProduct";
+import Product from "./product";
 
 export const ALl_PRODUCTS_QUERY = gql`
   query ALL_PRODUCTS_QUERY {
@@ -42,7 +42,7 @@ function Products() {
     <div>
       <ProductListStyle>
         {data.allProducts.map((product) => {
-          return <SingleProduct key={product.id} product={product} />;
+          return <Product key={product.id} product={product} />;
         })}
       </ProductListStyle>
     </div>

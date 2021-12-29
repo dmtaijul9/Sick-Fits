@@ -4,6 +4,7 @@ import Form from "./styles/Form";
 
 import DisplayError from "./ErrorMessage";
 import { ALl_PRODUCTS_QUERY } from "./Products";
+import Router from "next/router";
 
 const CREATE_PRODUCT_MUTATION = gql`
   mutation CREATE_PRODUCT_MUTATION(
@@ -44,15 +45,16 @@ const CreateProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputs);
     const res = await createProduct({
       variables: inputs,
       refetchQueries: [{ query: ALl_PRODUCTS_QUERY }],
     });
 
-    console.log(res);
-
     clearForm();
+
+    Router.push({
+      pathname: `/product/${res?.data?.createProduct?.id}`,
+    });
   };
   return (
     <Form onSubmit={handleSubmit}>
@@ -60,7 +62,7 @@ const CreateProduct = () => {
       <fieldset disabled={loading} aria-busy={loading}>
         <label htmlFor="image">
           Image
-          <input required type="file" name="image" onChange={handleChange} />
+          <input type="file" name="image" onChange={handleChange} />
         </label>
         <label htmlFor="name">
           Name

@@ -1,26 +1,71 @@
-import React from "react";
-import Link from "next/link";
-import ItemStyle from "./styles/ItemStyles";
-import Title from "./styles/Title";
-import PriceTag from "./styles/PriceTag";
-import formatMoney from "../lib/formatMoney";
+import { useQuery } from "@apollo/client";
+import gql from "graphql-tag";
+import styled from "styled-components";
+import DisplayError from "./ErrorMessage";
 
-const SingleProduct = ({ product }) => {
+const ProductStyle = styled.div`
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  max-width: var(--maxWidth);
+  justify-content: center;
+  align-items: top;
+  gap: 2.5rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+`;
+
+const SINGLE_ITEM_QUERY = gql`
+  query SINGLE_ITEM_QUERY($id: ID!) {
+    Product(where: { id: $id }) {
+      id
+      name
+      price
+      description
+      status
+      photo {
+        altText
+        image {
+          publicUrlTransformed
+        }
+      }
+    }
+  }
+`;
+
+const SingleProduct = ({ id }) => {
+  const { loading, error, data } = useQuery(SINGLE_ITEM_QUERY, {
+    variables: {
+      id,
+    },
+  });
+
+  console.log(loading, error, data);
+  if (loading) {
+    return <p>Loading ...</p>;
+  }
+  if (error) {
+    return <DisplayError error={error} />;
+  }
+
+  const { Product } = data;
+
   return (
-    <>
-      <ItemStyle>
-        <img
-          src={`${product?.photo?.image?.publicUrlTransformed}`}
-          alt={`${product.name}`}
-        />
-        <Title>
-          <Link href={`product${product.name}`}>{product.name}</Link>
-        </Title>
-        <PriceTag> {formatMoney(product.price)} </PriceTag>
-        {/* TODO: Adding button etc */}
-        <p> {product.description} </p>
-      </ItemStyle>
-    </>
+    <ProductStyle>
+      <img
+        src={Product?.photo?.image?.publicUrlTransformed}
+        alt={Product?.photo?.altText}
+      />
+      <div className="details">
+        <h2> {Product?.name} </h2>
+        <p> {Product?.description} </p>
+      </div>
+    </ProductStyle>
   );
 };
+
 export default SingleProduct;
