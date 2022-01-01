@@ -32,6 +32,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-size: 1.5rem;
     line-height: 2;
+
   }
   a {
     text-decoration: none;
@@ -43,6 +44,7 @@ const GlobalStyle = createGlobalStyle`
   }
   button {
     font-family: 'radnika_next',-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    cursor: pointer;
   }
 
 `;

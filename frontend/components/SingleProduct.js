@@ -1,6 +1,8 @@
 import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 import styled from "styled-components";
+import Head from "next/head";
+
 import DisplayError from "./ErrorMessage";
 
 const ProductStyle = styled.div`
@@ -56,6 +58,9 @@ const SingleProduct = ({ id }) => {
 
   return (
     <ProductStyle>
+      <Head>
+        <title>Sick Fits | {Product?.name} </title>
+      </Head>
       <img
         src={Product?.photo?.image?.publicUrlTransformed}
         alt={Product?.photo?.altText}
