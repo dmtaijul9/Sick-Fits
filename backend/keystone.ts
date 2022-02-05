@@ -1,3 +1,6 @@
+import { extendGraphqlSchema } from "./mutations/index";
+import { CartItem } from "./schemas/CartItem";
+import { sendPasswordResetEmail } from "./lib/mail";
 import { config, createSchema } from "@keystone-next/keystone/schema";
 import { createAuth } from "@keystone-next/auth";
 import {
@@ -26,6 +29,13 @@ const { withAuth } = createAuth({
 
     // TODO: Add in initial roles here
   },
+  passwordResetLink: {
+    sendToken: async (args: any) => {
+      // send an email
+
+      await sendPasswordResetEmail(args.token, args.identity);
+    },
+  },
 });
 
 export default withAuth(
@@ -52,7 +62,9 @@ export default withAuth(
       User,
       Product,
       ProductImage,
+      CartItem,
     }),
+    extendGraphqlSchema: extendGraphqlSchema,
     ui: {
       // show the ui only for people who pass this test .
       isAccessAllowed: ({ session }) => !!session?.data,
